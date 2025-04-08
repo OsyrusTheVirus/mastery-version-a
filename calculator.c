@@ -10,6 +10,10 @@ int calculate_result(struct Reader *reader) {
         head = reader->token;
         if (head->tok_type != TOK_NUM) {
             // this is an operation:
+            if(head == NULL || head->next == NULL || head->next->next == NULL){
+                advance(reader);
+                continue;
+            }
             struct Token *op = head;
             struct Token *val_a = head->next;
             struct Token *val_b = head->next->next;
